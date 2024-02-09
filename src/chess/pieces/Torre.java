@@ -15,4 +15,11 @@ public class Torre extends ChessPiece {
 		return "T";
 	}
 
+	@Override
+	public boolean[][] possibleMoves() {
+		boolean[][] mat = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+		
+		return mat;
+	}
+
 }

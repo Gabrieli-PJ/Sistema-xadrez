@@ -13,7 +13,7 @@ public class UI {
 
 	public static final String ANSI_RESET = "\u001B[0m";
 
-	public static final String RED_BRIGHT = "\033[0;91m"; // RED
+	public static final String GREEN_BRIGHT = "\033[0;92m";
 	public static final String BLACK_BOLD_BRIGHT = "\033[1;90m"; // BLACK
 	public static final String BLUE_BOLD_BRIGHT = "\033[1;94m"; // BLUE
 	public static final String WHITE_BOLD_BRIGHT = "\033[1;97m";
@@ -37,7 +37,7 @@ public class UI {
 
 	public static void printBoard(ChessPiece[][] peças) {
 		for (int i = 0; i < peças.length; i++) {
-			System.out.print(RED_BRIGHT + (8 - i) + "  " + ANSI_RESET);
+			System.out.print(GREEN_BRIGHT + (8 - i) + "  " + ANSI_RESET);
 
 			for (int j = 0; j < peças.length; j++) {
 				printPiece(peças[i][j]);
@@ -45,7 +45,7 @@ public class UI {
 			}
 			System.out.println();
 		}
-		System.out.println(RED_BRIGHT + "   a  b  c  d  e  f  g  h" + ANSI_RESET);
+		System.out.println(GREEN_BRIGHT + "   a  b  c  d  e  f  g  h" + ANSI_RESET);
 	}
 
 	private static void printPiece(ChessPiece peça) {

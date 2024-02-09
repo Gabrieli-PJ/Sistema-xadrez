@@ -7,6 +7,7 @@ import chess.pieces.Rei;
 import chess.pieces.Torre;
 
 public class ChessMatch {
+	
 	private Board tabuleiro;
 
 	public ChessMatch() {
@@ -43,6 +44,9 @@ public class ChessMatch {
 	private void validateSourcePosition(Position posicao) {
 		if(!tabuleiro.thereIsAPiece(posicao)) {
 			throw new ChessException("Não existe peças na posição de origem");
+		}
+		if(!tabuleiro.peça(posicao).isTheAnyPossibleMove()) {
+			throw new ChessException("Não exite movimentos possiveis para essa peça");
 		}
 	}
 
