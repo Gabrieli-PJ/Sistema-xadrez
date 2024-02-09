@@ -67,6 +67,24 @@ public class ChessMatch {
 		placeNewPiece('f', 7, new Torre(tabuleiro, Color.WHITE));
 		placeNewPiece('g', 7, new Torre(tabuleiro, Color.WHITE));
 		placeNewPiece('h', 7, new Torre(tabuleiro, Color.WHITE));
+		
+		
+		placeNewPiece('a', 1, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('b', 1, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('c', 1, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('d', 1, new Rei(tabuleiro, Color.BLACK));
+		placeNewPiece('e', 1, new Rei(tabuleiro, Color.BLACK));
+		placeNewPiece('f', 1, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('g', 1, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('h', 1, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('a', 2, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('b', 2, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('c', 2, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('d', 2, new Rei(tabuleiro, Color.BLACK));
+		placeNewPiece('e', 2, new Rei(tabuleiro, Color.BLACK));
+		placeNewPiece('f', 2, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('g', 2, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('h', 2, new Torre(tabuleiro, Color.BLACK));
 
 	}
 }
