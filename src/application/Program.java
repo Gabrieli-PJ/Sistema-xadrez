@@ -19,16 +19,19 @@ public class Program {
 		
 		while (true) {
 			try {
-				final String WHITE_BOLD = "\033[1;37m";
-				final String ANSI_RESET = "\u001B[0m";
 				UI.clearScreen();
 				UI.printBoard(partida.getPeças());
 				System.out.println();
-				System.out.println( WHITE_BOLD + "Origem: " + ANSI_RESET);
+				System.out.println( UI.WHITE_BOLD + "Origem: " + UI.ANSI_RESET);
 				ChessPosition origem = UI.readChessPosition(sc);
 				
+				boolean[][] possibleMoves = partida.possibleMoves(origem);
+				UI.clearScreen();
+				UI.printBoard(partida.getPeças(), possibleMoves);
+				
+				
 				System.out.println();
-				System.out.println(WHITE_BOLD + "Destino: " + ANSI_RESET);
+				System.out.println(UI.WHITE_BOLD + "Destino: " + UI.ANSI_RESET);
 				
 				ChessPosition destino = UI.readChessPosition(sc);
 				

@@ -14,8 +14,11 @@ public class UI {
 	public static final String ANSI_RESET = "\u001B[0m";
 
 	public static final String GREEN_BRIGHT = "\033[0;92m";
-	public static final String BLACK_BOLD_BRIGHT = "\033[1;90m"; // BLACK
-	public static final String BLUE_BOLD_BRIGHT = "\033[1;94m"; // BLUE
+	public static final String WHITE_BOLD = "\033[1;37m";
+	 public static final String BLACK_BOLD = "\033[1;30m";
+	public static final String BLACK_BACKGROUND_BRIGHT = "\033[0;100m";
+	public static final String BLACK_BOLD_BRIGHT = "\033[1;90m";
+	public static final String BLUE_BOLD_BRIGHT = "\033[1;94m";
 	public static final String WHITE_BOLD_BRIGHT = "\033[1;97m";
 
 	public static void clearScreen() {
@@ -40,7 +43,7 @@ public class UI {
 			System.out.print(GREEN_BRIGHT + (8 - i) + "  " + ANSI_RESET);
 
 			for (int j = 0; j < peças.length; j++) {
-				printPiece(peças[i][j]);
+				printPiece(peças[i][j], false);
 
 			}
 			System.out.println();
@@ -48,13 +51,35 @@ public class UI {
 		System.out.println(GREEN_BRIGHT + "   a  b  c  d  e  f  g  h" + ANSI_RESET);
 	}
 
-	private static void printPiece(ChessPiece peça) {
+	public static void printBoard(ChessPiece[][] peças, boolean[][] possibleMoves) {
+		for (int i = 0; i < peças.length; i++) {
+			System.out.print(GREEN_BRIGHT + (8 - i) + "  " + ANSI_RESET);
+
+			for (int j = 0; j < peças.length; j++) {
+				printPiece(peças[i][j], possibleMoves[i][j]);
+
+			}
+			System.out.println();
+		}
+		System.out.println(GREEN_BRIGHT + "   a  b  c  d  e  f  g  h" + ANSI_RESET);
+	}
+	
+	private static void printPiece(ChessPiece peça, boolean background) {
+		if (background) {
+			System.out.print(BLACK_BACKGROUND_BRIGHT);
+		}
+		
 		if (peça == null) {
-			System.out.print(BLACK_BOLD_BRIGHT + "-" + ANSI_RESET);
+			if (background == true) {
+			System.out.print(BLACK_BOLD + "-" + ANSI_RESET); 
+			}
+			else {
+				System.out.print(BLACK_BOLD_BRIGHT + "-" + ANSI_RESET); 
+			}
 
 		} else {
 			if (peça.getCor() == Color.WHITE) {
-				System.out.print(WHITE_BOLD_BRIGHT + peça + ANSI_RESET);
+				System.out.print(WHITE_BOLD + peça + ANSI_RESET);
 			} else {
 				System.out.print(BLUE_BOLD_BRIGHT + peça + ANSI_RESET);
 			}

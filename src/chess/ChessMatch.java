@@ -7,7 +7,7 @@ import chess.pieces.Rei;
 import chess.pieces.Torre;
 
 public class ChessMatch {
-	
+
 	private Board tabuleiro;
 
 	public ChessMatch() {
@@ -25,32 +25,38 @@ public class ChessMatch {
 
 		return mat;
 	}
-	
+
+	public boolean[][] possibleMoves(ChessPosition posicaoOrigem) {
+		Position posicao = posicaoOrigem.toPosition();
+		validateSourcePosition(posicao);
+		return tabuleiro.peça(posicao).possibleMoves();
+	}
+
 	public ChessPiece performChessMove(ChessPosition posicaoOrigem, ChessPosition posicaoDestino) {
 		Position origem = posicaoOrigem.toPosition();
 		Position destino = posicaoDestino.toPosition();
 		validateSourcePosition(origem);
 		validateTargetPosition(origem, destino);
 		Piece peçaCapturada = makeMove(origem, destino);
-		return (ChessPiece)peçaCapturada;
+		return (ChessPiece) peçaCapturada;
 	}
-	
+
 	private Piece makeMove(Position origem, Position destino) {
 		Piece p = tabuleiro.removePiece(origem);
 		Piece peçaCapturada = tabuleiro.removePiece(destino);
 		tabuleiro.placePiece(p, destino);
 		return peçaCapturada;
 	}
-	
+
 	private void validateSourcePosition(Position posicao) {
-		if(!tabuleiro.thereIsAPiece(posicao)) {
+		if (!tabuleiro.thereIsAPiece(posicao)) {
 			throw new ChessException("Não existe peças na posição de origem");
 		}
-		if(!tabuleiro.peça(posicao).isTheAnyPossibleMove()) {
+		if (!tabuleiro.peça(posicao).isTheAnyPossibleMove()) {
 			throw new ChessException("Não existe movimentos possiveis para essa peça");
 		}
 	}
-	
+
 	private void validateTargetPosition(Position origem, Position destino) {
 		if (!tabuleiro.peça(origem).possibleMove(destino)) {
 			throw new ChessException("A peça não pode se mover para a posição de destino");
@@ -78,8 +84,7 @@ public class ChessMatch {
 		placeNewPiece('f', 7, new Torre(tabuleiro, Color.WHITE));
 		placeNewPiece('g', 7, new Torre(tabuleiro, Color.WHITE));
 		placeNewPiece('h', 7, new Torre(tabuleiro, Color.WHITE));
-		
-		
+
 		placeNewPiece('a', 1, new Torre(tabuleiro, Color.BLACK));
 		placeNewPiece('b', 1, new Torre(tabuleiro, Color.BLACK));
 		placeNewPiece('c', 1, new Torre(tabuleiro, Color.BLACK));
