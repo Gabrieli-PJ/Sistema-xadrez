@@ -1,7 +1,10 @@
 package application;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import chess.ChessMatch;
 import chess.ChessPiece;
@@ -49,8 +52,10 @@ public class UI {
 
 	}
 	
-	public static void printMatch(ChessMatch partidaXadrez) {
+	public static void printMatch(ChessMatch partidaXadrez, List<ChessPiece> capturadas) {
 		printBoard(partidaXadrez.getPeças());
+		System.out.println();
+		printCapturedPieces(capturadas);
 		System.out.println();
 		System.out.println(WHITE_BOLD + "Rodada: " + ANSI_RESET + partidaXadrez.getRodada());
 		if(partidaXadrez.getJogadorAtual() == Color.WHITE) {
@@ -116,5 +121,15 @@ public class UI {
 			}
 		}
 		System.out.print("  ");
+	}
+	
+	private static void printCapturedPieces(List<ChessPiece> capturadas) {
+		List<ChessPiece> branca = capturadas.stream().filter(x -> x.getCor() == Color.WHITE).collect(Collectors.toList());
+		List<ChessPiece> preta = capturadas.stream().filter(x -> x.getCor() == Color.BLACK).collect(Collectors.toList());
+		System.out.println("Peças Capturadas: ");
+		System.out.print(WHITE_BOLD + "Brancas: " + ANSI_RESET );
+		System.out.print(WHITE_BOLD + Arrays.toString(branca.toArray()) + ANSI_RESET + "\t\t" );
+		System.out.print(BLUE_BOLD_BRIGHT + "Pretas: "  + ANSI_RESET);
+		System.out.println(BLUE_BOLD_BRIGHT + Arrays.toString(preta.toArray()) + ANSI_RESET );
 	}
 }
