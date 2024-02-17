@@ -20,7 +20,7 @@ public class Program {
 		ChessMatch partida = new ChessMatch();
 		List<ChessPiece> capturadas = new ArrayList<>();
 		
-		while (true) {
+		while (!partida.getXequeMate()) {
 			try {
 				UI.clearScreen();
 				UI.printMatch(partida, capturadas);
@@ -56,6 +56,8 @@ public class Program {
 				sc.nextLine();
 			}
 		}
+		UI.clearScreen();
+		UI.printMatch(partida, capturadas);
 		
 
 	}

@@ -16,6 +16,7 @@ public class ChessMatch {
 	private Color jogadorAtual;
 	private Board tabuleiro;
 	private boolean xeque;
+	private boolean xequeMate;
 	
 	private List<Piece> peçasNoTabuleiro = new ArrayList<>();
 	private List<Piece> peçasCapturadas = new ArrayList<>();
@@ -29,6 +30,10 @@ public class ChessMatch {
 	
 	public boolean getXeque() {
 		return xeque;
+	}
+	
+	public boolean getXequeMate() {
+		return xequeMate;
 	}
 	
 	public int getRodada() {
@@ -70,7 +75,9 @@ public class ChessMatch {
 		
 		xeque = (testCheck(oponente(jogadorAtual))) ? true : false;
 		
-		
+		if (testCheckMate(oponente(jogadorAtual))) {
+			xequeMate = true;
+		}
 		nextTurn();
 		return (ChessPiece) peçaCapturada;
 	}
@@ -148,6 +155,35 @@ public class ChessMatch {
 		}
 		return false;
 	}
+	
+	private boolean testCheckMate(Color cor) {
+		if (!testCheck(cor)) {
+			return false;
+		}
+		
+		List<Piece> lista = peçasNoTabuleiro.stream().filter(x -> ((ChessPiece)x).getCor() == cor).collect(Collectors.toList());
+		for (Piece p : lista) {
+			boolean [][] mat = p.possibleMoves();
+			for(int i = 0; i<tabuleiro.getLinhas(); i++) {
+				for (int j = 0; j<tabuleiro.getColunas(); j++) {
+					if (mat[i][j]) {
+						Position origem = ((ChessPiece)p).getChessPosition().toPosition();
+						Position destino = new Position(i, j);
+						
+						Piece peçaCapturada = makeMove(origem, destino);
+						boolean testarXeque = testCheck(cor);
+						undoMove(origem, destino, peçaCapturada);
+						
+						if (!testarXeque) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
+	}
+	
 
 	private void placeNewPiece(char coluna, int linha, ChessPiece peça) {
 		tabuleiro.placePiece(peça, new ChessPosition(coluna, linha).toPosition());
@@ -180,13 +216,6 @@ public class ChessMatch {
 		placeNewPiece('f', 8, new Torre(tabuleiro, Color.BLACK));
 		placeNewPiece('g', 8, new Torre(tabuleiro, Color.BLACK));
 		placeNewPiece('h', 8, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('a', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('b', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('c', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('d', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('e', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('f', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('g', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('h', 7, new Torre(tabuleiro, Color.BLACK));
+
 	}
 }

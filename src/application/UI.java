@@ -58,16 +58,27 @@ public class UI {
 		printCapturedPieces(capturadas);
 		System.out.println();
 		System.out.println(WHITE_BOLD + "Rodada: " + ANSI_RESET + partidaXadrez.getRodada());
-		if(partidaXadrez.getJogadorAtual() == Color.WHITE) {
-			System.out.println(WHITE_BOLD + "Esperando movimento do jogador: " + ANSI_RESET + WHITE_BOLD_BRIGHT +  partidaXadrez.getJogadorAtual() + ANSI_RESET);
+		if (!partidaXadrez.getXequeMate()) {
+			if(partidaXadrez.getJogadorAtual() == Color.WHITE) {
+				System.out.println(WHITE_BOLD + "Esperando movimento do jogador: " + ANSI_RESET + WHITE_BOLD_BRIGHT +  partidaXadrez.getJogadorAtual() + ANSI_RESET);
+			}
+			else {
+				System.out.println(WHITE_BOLD + "Esperando movimento do jogador: " + ANSI_RESET + BLUE_BOLD_BRIGHT +  partidaXadrez.getJogadorAtual() + ANSI_RESET);
+			}
+			
+			if (partidaXadrez.getXeque()) {
+				System.out.println("XEQUE");
+			}
+		} else {
+			System.out.println( RED_BOLD + "XEQUE MATE" + ANSI_RESET);
+			if (partidaXadrez.getJogadorAtual() == Color.WHITE) {
+				System.out.println(WHITE_BOLD + "Vencedor: " + ANSI_RESET + WHITE_BOLD_BRIGHT +  partidaXadrez.getJogadorAtual());
+			} else {
+				System.out.println(WHITE_BOLD + "Vencedor: " + ANSI_RESET + BLUE_BOLD_BRIGHT +  partidaXadrez.getJogadorAtual());
+			}
+			
 		}
-		else {
-			System.out.println(WHITE_BOLD + "Esperando movimento do jogador: " + ANSI_RESET + BLUE_BOLD_BRIGHT +  partidaXadrez.getJogadorAtual() + ANSI_RESET);
-		}
-		
-		if (partidaXadrez.getXeque()) {
-			System.out.println("XEQUE");
-		}
+
 		
 	}
 

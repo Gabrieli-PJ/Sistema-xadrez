@@ -13,7 +13,7 @@ public class Rei extends ChessPiece {
 
 	@Override
 	public String toString() {
-		return "R";
+		return "K";
 	}
 
 	private boolean canMove(Position posicao) {
