@@ -83,7 +83,8 @@ public class ChessMatch {
 	}
 
 	private Piece makeMove(Position origem, Position destino) {
-		Piece p = tabuleiro.removePiece(origem);
+		ChessPiece p = (ChessPiece)tabuleiro.removePiece(origem);
+		p.aumentarMovimentos();
 		Piece peçaCapturada = tabuleiro.removePiece(destino);
 		tabuleiro.placePiece(p, destino);
 		
@@ -96,7 +97,8 @@ public class ChessMatch {
 	}
 	
 	private void undoMove(Position origem, Position destino, Piece peçaCapturada) {
-		Piece p = tabuleiro.removePiece(destino);
+		ChessPiece p = (ChessPiece)tabuleiro.removePiece(destino);
+		p.diminuirMovimentos();
 		tabuleiro.placePiece(p, origem);
 		
 		if (peçaCapturada != null) {
@@ -216,6 +218,13 @@ public class ChessMatch {
 		placeNewPiece('f', 8, new Torre(tabuleiro, Color.BLACK));
 		placeNewPiece('g', 8, new Torre(tabuleiro, Color.BLACK));
 		placeNewPiece('h', 8, new Torre(tabuleiro, Color.BLACK));
-
+		placeNewPiece('a', 7, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('b', 7, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('c', 7, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('d', 7, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('e', 7, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('f', 7, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('g', 7, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('h', 7, new Torre(tabuleiro, Color.BLACK));
 	}
 }
