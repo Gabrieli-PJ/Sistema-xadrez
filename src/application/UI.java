@@ -65,6 +65,10 @@ public class UI {
 			System.out.println(WHITE_BOLD + "Esperando movimento do jogador: " + ANSI_RESET + BLUE_BOLD_BRIGHT +  partidaXadrez.getJogadorAtual() + ANSI_RESET);
 		}
 		
+		if (partidaXadrez.getXeque()) {
+			System.out.println("XEQUE");
+		}
+		
 	}
 
 	public static void printBoard(ChessPiece[][] peças) {
