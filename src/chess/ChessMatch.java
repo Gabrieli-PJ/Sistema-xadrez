@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import boardGame.Board;
 import boardGame.Piece;
 import boardGame.Position;
+import chess.pieces.Peão;
 import chess.pieces.Rei;
 import chess.pieces.Torre;
 
@@ -201,14 +202,14 @@ public class ChessMatch {
 		placeNewPiece('f', 1, new Torre(tabuleiro, Color.WHITE));
 		placeNewPiece('g', 1, new Torre(tabuleiro, Color.WHITE));
 		placeNewPiece('h', 1, new Torre(tabuleiro, Color.WHITE));
-		placeNewPiece('a', 2, new Torre(tabuleiro, Color.WHITE));
-		placeNewPiece('b', 2, new Torre(tabuleiro, Color.WHITE));
-		placeNewPiece('c', 2, new Torre(tabuleiro, Color.WHITE));
-		placeNewPiece('d', 2, new Torre(tabuleiro, Color.WHITE));
-		placeNewPiece('e', 2, new Torre(tabuleiro, Color.WHITE));
-		placeNewPiece('f', 2, new Torre(tabuleiro, Color.WHITE));
-		placeNewPiece('g', 2, new Torre(tabuleiro, Color.WHITE));
-		placeNewPiece('h', 2, new Torre(tabuleiro, Color.WHITE));
+		placeNewPiece('a', 2, new Peão(tabuleiro, Color.WHITE));
+		placeNewPiece('b', 2, new Peão(tabuleiro, Color.WHITE));
+		placeNewPiece('c', 2, new Peão(tabuleiro, Color.WHITE));
+		placeNewPiece('d', 2, new Peão(tabuleiro, Color.WHITE));
+		placeNewPiece('e', 2, new Peão(tabuleiro, Color.WHITE));
+		placeNewPiece('f', 2, new Peão(tabuleiro, Color.WHITE));
+		placeNewPiece('g', 2, new Peão(tabuleiro, Color.WHITE));
+		placeNewPiece('h', 2, new Peão(tabuleiro, Color.WHITE));
 
 		placeNewPiece('a', 8, new Torre(tabuleiro, Color.BLACK));
 		placeNewPiece('b', 8, new Torre(tabuleiro, Color.BLACK));
@@ -218,13 +219,13 @@ public class ChessMatch {
 		placeNewPiece('f', 8, new Torre(tabuleiro, Color.BLACK));
 		placeNewPiece('g', 8, new Torre(tabuleiro, Color.BLACK));
 		placeNewPiece('h', 8, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('a', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('b', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('c', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('d', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('e', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('f', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('g', 7, new Torre(tabuleiro, Color.BLACK));
-		placeNewPiece('h', 7, new Torre(tabuleiro, Color.BLACK));
+		placeNewPiece('a', 7, new Peão(tabuleiro, Color.BLACK));
+		placeNewPiece('b', 7, new Peão(tabuleiro, Color.BLACK));
+		placeNewPiece('c', 7, new Peão(tabuleiro, Color.BLACK));
+		placeNewPiece('d', 7, new Peão(tabuleiro, Color.BLACK));
+		placeNewPiece('e', 7, new Peão(tabuleiro, Color.BLACK));
+		placeNewPiece('f', 7, new Peão(tabuleiro, Color.BLACK));
+		placeNewPiece('g', 7, new Peão(tabuleiro, Color.BLACK));
+		placeNewPiece('h', 7, new Peão(tabuleiro, Color.BLACK));
 	}
 }
