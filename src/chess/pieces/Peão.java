@@ -12,6 +12,11 @@ public class Peão extends ChessPiece {
 	}
 
 	@Override
+	public String toString() {
+		return "P";
+	}
+	
+	@Override
 	public boolean[][] possibleMoves() {
 		boolean[][] mat = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
 
@@ -72,8 +77,5 @@ public class Peão extends ChessPiece {
 
 	}
 	
-	@Override
-	public String toString() {
-		return "P";
-	}
+
 }
