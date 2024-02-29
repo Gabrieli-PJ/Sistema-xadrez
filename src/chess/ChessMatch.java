@@ -97,6 +97,26 @@ public class ChessMatch {
 			peçasCapturadas.add(peçaCapturada);
 		}
 		
+		//roque pequeno
+		if (p instanceof Rei && destino.getColuna() == origem.getColuna() + 2) {
+			Position origemT =  new Position(origem.getLinha(), origem.getColuna() + 3);
+			Position destinoT =  new Position(origem.getLinha(), origem.getColuna() + 1);
+			
+			ChessPiece Torre = (ChessPiece)tabuleiro.removePiece(origemT);
+			tabuleiro.placePiece(Torre, destinoT);
+			Torre.aumentarMovimentos();
+		}
+		
+		//roque grande
+		if (p instanceof Rei && destino.getColuna() == origem.getColuna() - 2) {
+			Position origemT =  new Position(origem.getLinha(), origem.getColuna() - 4);
+			Position destinoT =  new Position(origem.getLinha(), origem.getColuna() - 1);
+			
+			ChessPiece Torre = (ChessPiece)tabuleiro.removePiece(origemT);
+			tabuleiro.placePiece(Torre, destinoT);
+			Torre.aumentarMovimentos();
+		}
+		
 		return peçaCapturada;
 	}
 	
@@ -109,6 +129,25 @@ public class ChessMatch {
 			tabuleiro.placePiece(peçaCapturada, destino);
 			peçasCapturadas.remove(peçaCapturada);
 			peçasNoTabuleiro.add(peçaCapturada);
+		}
+		
+		if (p instanceof Rei && destino.getColuna() == origem.getColuna() + 2) {
+			Position origemT =  new Position(origem.getLinha(), origem.getColuna() + 3);
+			Position destinoT =  new Position(origem.getLinha(), origem.getColuna() + 1);
+			
+			ChessPiece Torre = (ChessPiece)tabuleiro.removePiece(destinoT);
+			tabuleiro.placePiece(Torre, origemT);
+			Torre.diminuirMovimentos();
+		}
+		
+		//roque grande
+		if (p instanceof Rei && destino.getColuna() == origem.getColuna() - 2) {
+			Position origemT =  new Position(origem.getLinha(), origem.getColuna() - 4);
+			Position destinoT =  new Position(origem.getLinha(), origem.getColuna() - 1);
+			
+			ChessPiece Torre = (ChessPiece)tabuleiro.removePiece(destinoT);
+			tabuleiro.placePiece(Torre, origemT);
+			Torre.diminuirMovimentos();
 		}
 		
 		}
@@ -201,7 +240,7 @@ public class ChessMatch {
 		placeNewPiece('b', 1, new Cavalo(tabuleiro, Color.WHITE));
 		placeNewPiece('c', 1, new Bispo(tabuleiro, Color.WHITE));
 		placeNewPiece('d', 1, new Rainha(tabuleiro, Color.WHITE));
-		placeNewPiece('e', 1, new Rei(tabuleiro, Color.WHITE));
+		placeNewPiece('e', 1, new Rei(tabuleiro, Color.WHITE, this));
 		placeNewPiece('f', 1, new Bispo(tabuleiro, Color.WHITE));
 		placeNewPiece('g', 1, new Cavalo(tabuleiro, Color.WHITE));
 		placeNewPiece('h', 1, new Torre(tabuleiro, Color.WHITE));
@@ -218,7 +257,7 @@ public class ChessMatch {
 		placeNewPiece('b', 8, new Cavalo(tabuleiro, Color.BLACK));
 		placeNewPiece('c', 8, new Bispo(tabuleiro, Color.BLACK));
 		placeNewPiece('d', 8, new Rainha(tabuleiro, Color.BLACK));
-		placeNewPiece('e', 8, new Rei(tabuleiro, Color.BLACK));
+		placeNewPiece('e', 8, new Rei(tabuleiro, Color.BLACK, this));
 		placeNewPiece('f', 8, new Bispo(tabuleiro, Color.BLACK));
 		placeNewPiece('g', 8, new Cavalo(tabuleiro, Color.BLACK));
 		placeNewPiece('h', 8, new Torre(tabuleiro, Color.BLACK));
