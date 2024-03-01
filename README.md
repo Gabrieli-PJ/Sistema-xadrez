@@ -1,6 +1,4 @@
-  Um jogo de Xadrez funcional em consoles, feito em Java!
-
-  > [!NOTE]
+> [!NOTE]
 > Para ter a experiência completa da aplicação, sugiro que utilize um console que imprima cores (como o git bash ou o console do Eclipse).
 
  ### Sobre o Projeto
