@@ -1,5 +1,6 @@
 package application;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -42,6 +43,18 @@ public class Program {
 				
 				if (peçaCapturada != null) {
 					capturadas.add(peçaCapturada);
+				}
+				
+				if (partida.getPromovido() != null) {
+					System.out.print("Digite a peça para promoção(Q/B/C/T): ");
+					String tipo = sc.nextLine().toUpperCase();
+					
+					while (!tipo.equals("B") && !tipo.equals("Q") && !tipo.equals("C") && !tipo.equals("T")) {
+						System.out.print("Valor Invalido! Digite a peça para promoção(Q/B/C/T): ");
+						tipo = sc.nextLine().toUpperCase();
+					}
+					
+					partida.reporPeçaPromovida(tipo);
 				}
 				
 			}

@@ -22,6 +22,7 @@ public class ChessMatch {
 	private boolean xeque;
 	private boolean xequeMate;
 	private ChessPiece enPassantVulneravel;
+	private ChessPiece promovido;
 
 	private List<Piece> peçasNoTabuleiro = new ArrayList<>();
 	private List<Piece> peçasCapturadas = new ArrayList<>();
@@ -51,6 +52,10 @@ public class ChessMatch {
 
 	public ChessPiece getEnPassantVulneravel() {
 		return enPassantVulneravel;
+	}
+
+	public ChessPiece getPromovido() {
+		return promovido;
 	}
 
 	public ChessPiece[][] getPeças() {
@@ -84,6 +89,16 @@ public class ChessMatch {
 
 		ChessPiece peçaMovida = (ChessPiece) tabuleiro.peça(destino);
 
+		// promoção
+		promovido = null;
+		if (peçaMovida instanceof Peão) {
+			if (peçaMovida.getCor() == Color.WHITE && destino.getLinha() == 0
+					|| peçaMovida.getCor() == Color.BLACK && destino.getLinha() == 7) {
+				promovido = (ChessPiece) tabuleiro.peça(destino);
+				promovido = reporPeçaPromovida(" ");
+			}
+		}
+
 		xeque = (testCheck(oponente(jogadorAtual))) ? true : false;
 
 		if (testCheckMate(oponente(jogadorAtual))) {
@@ -101,6 +116,36 @@ public class ChessMatch {
 		}
 
 		return (ChessPiece) peçaCapturada;
+	}
+
+	public ChessPiece reporPeçaPromovida(String tipo) {
+		if (promovido == null) {
+			throw new IllegalStateException("não existe peça para ser promovida");
+		}
+		if (!tipo.equals("B") && !tipo.equals("Q") && !tipo.equals("C") && !tipo.equals("T")) {
+			return promovido;
+		}
+
+		Position posicao = promovido.getChessPosition().toPosition();
+		Piece p = tabuleiro.removePiece(posicao);
+		peçasNoTabuleiro.remove(p);
+
+		ChessPiece novaP = novaPeça(tipo, promovido.getCor());
+		tabuleiro.placePiece(novaP, posicao);
+		peçasNoTabuleiro.add(novaP);
+
+		return novaP;
+
+	}
+
+	private ChessPiece novaPeça(String tipo, Color cor) {
+		if (tipo.equals("B"))
+			return new Bispo(tabuleiro, cor);
+		if (tipo.equals("Q"))
+			return new Rainha(tabuleiro, cor);
+		if (tipo.equals("C"))
+			return new Cavalo(tabuleiro, cor);
+		return new Torre(tabuleiro, cor);
 	}
 
 	private Piece makeMove(Position origem, Position destino) {
